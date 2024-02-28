@@ -5,8 +5,149 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ChessApp" Height="450" Width="800" Margin="0,0,0,-3">
 
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit">
+                    <MenuItem.ToolTip>
+                        <ToolTip Content="Close this application" />
+                    </MenuItem.ToolTip>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*" />
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                    <ColumnDefinition Width="12.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                    <RowDefinition Height="12.5*" />
+                </Grid.RowDefinitions>
+                <!--<Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderBrush" Value="Yellow" />
+                        <Setter Property="BorderThickness" Value="5" />
+                    </Style>
+                </Grid.Resources>-->
+
+                <Button Background="White" Grid.Column="0" />
+                <Button Background="Black" Grid.Column="1" />
+                <Button Background="White" Grid.Column="2" />
+                <Button Background="Black" Grid.Column="3" />
+                <Button Background="White" Grid.Column="4" />
+                <Button Background="Black" Grid.Column="5" />
+                <Button Background="White" Grid.Column="6" />
+                <Button Background="Black" Grid.Column="7" />
+                <Button Background="Black" Grid.Row="1" Grid.Column="0" />
+                <Button Background="White" Grid.Row="1" Grid.Column="1" />
+                <Button Background="Black" Grid.Row="1" Grid.Column="2" />
+                <Button Background="White" Grid.Row="1" Grid.Column="3" />
+                <Button Background="Black" Grid.Row="1" Grid.Column="4" />
+                <Button Background="White" Grid.Row="1" Grid.Column="5" />
+                <Button Background="Black" Grid.Row="1" Grid.Column="6" />
+                <Button Background="White" Grid.Row="1" Grid.Column="7" />
+                <Button Background="White" Grid.Row="2" Grid.Column="0" />
+                <Button Background="Black" Grid.Row="2" Grid.Column="1" />
+                <Button Background="White" Grid.Row="2" Grid.Column="2" />
+                <Button Background="Black" Grid.Row="2" Grid.Column="3" />
+                <Button Background="White" Grid.Row="2" Grid.Column="4" />
+                <Button Background="Black" Grid.Row="2" Grid.Column="5" />
+                <Button Background="White" Grid.Row="2" Grid.Column="6" />
+                <Button Background="Black" Grid.Row="2" Grid.Column="7" />
+                <Button Background="Black" Grid.Row="3" Grid.Column="0" />
+                <Button Background="White" Grid.Row="3" Grid.Column="1" />
+                <Button Background="Black" Grid.Row="3" Grid.Column="2" />
+                <Button Background="White" Grid.Row="3" Grid.Column="3" />
+                <Button Background="Black" Grid.Row="3" Grid.Column="4" />
+                <Button Background="White" Grid.Row="3" Grid.Column="5" />
+                <Button Background="Black" Grid.Row="3" Grid.Column="6" />
+                <Button Background="White" Grid.Row="3" Grid.Column="7" />
+                <Button Background="White" Grid.Row="4" Grid.Column="0" />
+                <Button Background="Black" Grid.Row="4" Grid.Column="1" />
+                <Button Background="White" Grid.Row="4" Grid.Column="2" />
+                <Button Background="Black" Grid.Row="4" Grid.Column="3" />
+                <Button Background="White" Grid.Row="4" Grid.Column="4" />
+                <Button Background="Black" Grid.Row="4" Grid.Column="5" />
+                <Button Background="White" Grid.Row="4" Grid.Column="6" />
+                <Button Background="Black" Grid.Row="4" Grid.Column="7" />
+                <Button Background="Black" Grid.Row="5" Grid.Column="0" />
+                <Button Background="White" Grid.Row="5" Grid.Column="1" />
+                <Button Background="Black" Grid.Row="5" Grid.Column="2" />
+                <Button Background="White" Grid.Row="5" Grid.Column="3" />
+                <Button Background="Black" Grid.Row="5" Grid.Column="4" />
+                <Button Background="White" Grid.Row="5" Grid.Column="5" />
+                <Button Background="Black" Grid.Row="5" Grid.Column="6" />
+                <Button Background="White" Grid.Row="5" Grid.Column="7" />
+                <Button Background="White" Grid.Row="6" Grid.Column="0" />
+                <Button Background="Black" Grid.Row="6" Grid.Column="1" />
+                <Button Background="White" Grid.Row="6" Grid.Column="2" />
+                <Button Background="Black" Grid.Row="6" Grid.Column="3" />
+                <Button Background="White" Grid.Row="6" Grid.Column="4" />
+                <Button Background="Black" Grid.Row="6" Grid.Column="5" />
+                <Button Background="White" Grid.Row="6" Grid.Column="6" />
+                <Button Background="Black" Grid.Row="6" Grid.Column="7" />
+                <Button Background="Black" Grid.Row="7" Grid.Column="0" />
+                <Button Background="White" Grid.Row="7" Grid.Column="1" />
+                <Button Background="Black" Grid.Row="7" Grid.Column="2" />
+                <Button Background="White" Grid.Row="7" Grid.Column="3" />
+                <Button Background="Black" Grid.Row="7" Grid.Column="4" />
+                <Button Background="White" Grid.Row="7" Grid.Column="5" />
+                <Button Background="Black" Grid.Row="7" Grid.Column="6" />
+                <Button Background="White" Grid.Row="7" Grid.Column="7" />
+
+            </Grid>
+
+
+
+        </Grid>
+
+
+
+    </DockPanel>
+
+
+
+    <!--<Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="39*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Button Content="Button" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="100" Height="25" Grid.ColumnSpan="2"/>
+    </Grid>-->
 </Window>
