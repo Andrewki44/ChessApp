@@ -18,11 +18,13 @@ namespace ChessApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Database.Database sqlite = new Database.Database();
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            Database.Database.createDbFile();
+            sqlite.createDbFile();
         }
 
         private void MenuItem_New_Click(object sender, RoutedEventArgs e)

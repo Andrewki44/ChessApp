@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Data;
 using Microsoft.Data.Sqlite;
 using System.IO;
+using System.Security.AccessControl;
 
 
 namespace Database
@@ -20,17 +21,15 @@ namespace Database
             DataSource = "Application.db"
         };
         
-        SqliteConnection dbConnection;
-        SqliteCommand command;
-        string sqlCommand;
-        string dbPath = Environment.CurrentDirectory + "\\DB";
-        string dbFilePath;
+        //SqliteConnection dbConnection;
+        //SqliteCommand command;
+        //string sqlCommand;
+        //string dbFilePath;
+        private static string dbPath = Environment.CurrentDirectory + "\\DB";
+        private static string dbFile = Path.Combine(dbPath, "sqlite.db");
 
-        public async static void createDbFile()
+        public void createDbFile()
         {
-            string dbPath = Environment.CurrentDirectory + "\\DB";
-            string dbFile = Path.Combine(dbPath, "sqlite.db");
-
             if (!string.IsNullOrEmpty(dbPath) && !Directory.Exists(dbPath))
                 Directory.CreateDirectory(dbPath);
 
