@@ -13,18 +13,33 @@ using Database;
 
 namespace ChessApp
 {
+    
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         Database.Database sqlite = new Database.Database();
+        ChessButton[,] buttonArray = new ChessButton[8, 8];
         
         public MainWindow()
         {
             InitializeComponent();
 
             sqlite.createDbFile();
+
+            ChessButton[,] buttons = {
+                { A1, A2, A3, A4, A5, A6, A7, A8 },
+                { B1, B2, B3, B4, B5, B6, B7, B8 },
+                { C1, C2, C3, C4, C5, C6, C7, C8 },
+                { D1, D2, D3, D4, D5, D6, D7, D8 },
+                { E1, E2, E3, E4, E5, E6, E7, E8 },
+                { F1, F2, F3, F4, F5, F6, F7, F8 },
+                { G1, G2, G3, G4, G5, G6, G7, G8 },
+                { H1, H2, H3, H4, H5, H6, H7, H8 },
+            };
+            buttonArray = buttons;
         }
 
         private void MenuItem_New_Click(object sender, RoutedEventArgs e)
@@ -52,55 +67,16 @@ namespace ChessApp
             BitmapImage QueenBlack = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\ChessPieces\\QueenBlack.png"));
             BitmapImage KingBlack = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + "\\ChessPieces\\KingBlack.png"));
 
-
-            B1.Content = new Image
+            for (int i = 0; i < 8; i++)
             {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B2.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B3.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B4.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B5.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B6.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B7.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            B8.Content = new Image
-            {
-                Source = PawnWhite,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
+                buttonArray[1,i].Content = new Image
+                {
+                    Source = PawnWhite,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Stretch = Stretch.Fill
+                };
+                buttonArray[1,i].piece = new Pawn(true);
+            }            
 
             A1.Content = new Image
             {
@@ -155,54 +131,15 @@ namespace ChessApp
                 Stretch = Stretch.Fill
             };
 
-            G1.Content = new Image
+            for (int i = 0; i < 8; i++)
             {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G2.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G3.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G4.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G5.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G6.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G7.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
-            G8.Content = new Image
-            {
-                Source = PawnBlack,
-                VerticalAlignment = VerticalAlignment.Center,
-                Stretch = Stretch.Fill
-            };
+                buttonArray[6, i].Content = new Image
+                {
+                    Source = PawnBlack,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Stretch = Stretch.Fill
+                };
+            }
 
             H1.Content = new Image
             {
