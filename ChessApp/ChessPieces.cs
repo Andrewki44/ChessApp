@@ -30,8 +30,7 @@ namespace ChessApp
             IsWhite = isWhite;
         }
 
-        public abstract void Move_Start(ChessButton sender, ChessButton[,] buttonArray);
-        public abstract void Move_End();
+        public abstract List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray);
     }
 
     internal class Pawn : ChessPiece
@@ -42,30 +41,173 @@ namespace ChessApp
         }
         private bool bHasMoved = false;
 
-        public override void Move_Start(ChessButton sender, ChessButton[,] buttonArray)
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
         {
-            sender.Background = new SolidColorBrush(Colors.Red);
-            MessageBox.Show(sender.Name);
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+            List<ChessButton> validMoves = new List<ChessButton>();
 
-            Tuple<int, int> buttonCoordinates = ChessButton.CoordinatesOf(sender, buttonArray);
-
-            //Check piece assignment. Does nothing if no piece
-            if (sender.piece == null)
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
                 throw new Exception();
             
-            if (sender.piece.IsWhite)
+            if (sender.Piece.IsWhite)
             {
                 //Move upwards
+                if (buttonCoordinates.Item1 < 7)
+
+                return validMoves;
             }
             else
             {
                 //Move downwards
+                return validMoves;
             }
         }
+    }
 
-        public override void Move_End()
+    internal class Rook : ChessPiece
+    {
+        public Rook(bool isWhite) : base(isWhite)
         {
-            return;
+            IsWhite = isWhite;
         }
-    }  
+        private bool bHasMoved = false;
+
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
+        {
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
+                throw new Exception();
+
+            if (sender.Piece.IsWhite)
+            {
+                //Move upwards
+                return new List<ChessButton>();
+            }
+            else
+            {
+                //Move downwards
+                return new List<ChessButton>();
+            }
+        }
+    }
+
+    internal class Knight : ChessPiece
+    {
+        public Knight(bool isWhite) : base(isWhite)
+        {
+            IsWhite = isWhite;
+        }
+        private bool bHasMoved = false;
+
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
+        {
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
+                throw new Exception();
+
+            if (sender.Piece.IsWhite)
+            {
+                //Move upwards
+                return new List<ChessButton>();
+            }
+            else
+            {
+                //Move downwards
+                return new List<ChessButton>();
+            }
+        }
+    }
+
+    internal class Bishop : ChessPiece
+    {
+        public Bishop(bool isWhite) : base(isWhite)
+        {
+            IsWhite = isWhite;
+        }
+        private bool bHasMoved = false;
+
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
+        {
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
+                throw new Exception();
+
+            if (sender.Piece.IsWhite)
+            {
+                //Move upwards
+                return new List<ChessButton>();
+            }
+            else
+            {
+                //Move downwards
+                return new List<ChessButton>();
+            }
+        }
+    }
+
+    internal class Queen : ChessPiece
+    {
+        public Queen(bool isWhite) : base(isWhite)
+        {
+            IsWhite = isWhite;
+        }
+        private bool bHasMoved = false;
+
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
+        {
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
+                throw new Exception();
+
+            if (sender.Piece.IsWhite)
+            {
+                //Move upwards
+                return new List<ChessButton>();
+            }
+            else
+            {
+                //Move downwards
+                return new List<ChessButton>();
+            }
+        }
+    }
+
+    internal class King : ChessPiece
+    {
+        public King(bool isWhite) : base(isWhite)
+        {
+            IsWhite = isWhite;
+        }
+        private bool bHasMoved = false;
+
+        public override List<ChessButton> Move_Piece(ChessButton sender, ChessButton[,] buttonArray)
+        {
+            Tuple<int, int> buttonCoordinates = sender.CoordinatesOf(buttonArray);
+
+            //Check Piece assignment. Does nothing if no Piece
+            if (sender.Piece == null)
+                throw new Exception();
+
+            if (sender.Piece.IsWhite)
+            {
+                //Move upwards
+                return new List<ChessButton>();
+            }
+            else
+            {
+                //Move downwards
+                return new List<ChessButton>();
+            }
+        }
+    }
+
 }

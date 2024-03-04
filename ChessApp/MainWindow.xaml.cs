@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,7 @@ namespace ChessApp
     {
         Database.Database sqlite = new Database.Database();
         ChessButton[,] buttonArray = new ChessButton[8, 8];
+        List<ChessButton> validMoves = new List<ChessButton>();
         bool isPieceSelected = false;
         
         public MainWindow()
@@ -76,7 +78,7 @@ namespace ChessApp
                     VerticalAlignment = VerticalAlignment.Center,
                     Stretch = Stretch.Fill
                 };
-                buttonArray[1,i].piece = new Pawn(true);
+                buttonArray[1,i].Piece = new Pawn(true);
             }            
 
             A1.Content = new Image
@@ -85,12 +87,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A1.Piece = new Rook(true);
             A8.Content = new Image
             {
                 Source = RookWhite,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A8.Piece = new Rook(true);
 
             A2.Content = new Image
             {
@@ -98,12 +102,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A2.Piece = new Knight(true);
             A7.Content = new Image
             {
                 Source = KnightWhite,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A7.Piece = new Knight(true);
 
             A3.Content = new Image
             {
@@ -111,12 +117,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A3.Piece = new Bishop(true);
             A6.Content = new Image
             {
                 Source = BishopWhite,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A6.Piece = new Bishop(true);
 
             A4.Content = new Image
             {
@@ -124,6 +132,7 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A4.Piece = new Queen(true);
 
             A5.Content = new Image
             {
@@ -131,6 +140,7 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            A5.Piece = new King(true);
 
             for (int i = 0; i < 8; i++)
             {
@@ -140,6 +150,7 @@ namespace ChessApp
                     VerticalAlignment = VerticalAlignment.Center,
                     Stretch = Stretch.Fill
                 };
+                buttonArray[6, i].Piece = new Pawn(false);
             }
 
             H1.Content = new Image
@@ -148,12 +159,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H1.Piece = new Rook(false);
             H8.Content = new Image
             {
                 Source = RookBlack,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H8.Piece = new Rook(false);
 
             H2.Content = new Image
             {
@@ -161,12 +174,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H2.Piece = new Knight(false);
             H7.Content = new Image
             {
                 Source = KnightBlack,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H7.Piece = new Knight(false);
 
             H3.Content = new Image
             {
@@ -174,12 +189,14 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H3.Piece = new Bishop(false);
             H6.Content = new Image
             {
                 Source = BishopBlack,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H6.Piece = new Bishop(false);
 
             H4.Content = new Image
             {
@@ -187,6 +204,7 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H4.Piece = new King(false);
 
             H5.Content = new Image
             {
@@ -194,6 +212,7 @@ namespace ChessApp
                 VerticalAlignment = VerticalAlignment.Center,
                 Stretch = Stretch.Fill
             };
+            H5.Piece = new Queen(false);
         }
 
         private void Chessboard_Loaded(object sender, RoutedEventArgs e)
@@ -207,13 +226,13 @@ namespace ChessApp
             if (button == null)
                 return;
 
-            if (button.piece != null)
+            if (!isPieceSelected)
             {
-                if (!isPieceSelected)
+                if (button.Piece != null)
                 {
                     try
                     {
-                        button.piece.Move_Start(button, buttonArray);
+                        validMoves = button.Piece.Move_Piece(button, buttonArray);
                         isPieceSelected = true;
                     }
                     catch
@@ -223,20 +242,20 @@ namespace ChessApp
                 }
                 else
                 {
-                    try
-                    {
-                        button.piece.Move_End();
-                        isPieceSelected = false;
-                    }
-                    catch
-                    {
-                        return;
-                    }
+                    return;
                 }
             }
             else
             {
-                return;
+                try
+                {
+                    button.Move_Destination(button, validMoves);
+                    isPieceSelected = false;
+                }
+                catch
+                {
+                    return;
+                }
             }
         }
     }

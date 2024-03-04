@@ -10,9 +10,9 @@ namespace ChessApp
 {
     internal class ChessButton : Button
     {
-        public ChessPiece? piece;
+        public ChessPiece? Piece;
 
-        public static Tuple<int, int> CoordinatesOf(ChessButton button, ChessButton[,] buttonArray)
+        public Tuple<int, int> CoordinatesOf(ChessButton[,] buttonArray)
         {
             int w = buttonArray.GetLength(0); // width
             int h = buttonArray.GetLength(1); // height
@@ -21,12 +21,17 @@ namespace ChessApp
             {
                 for (int y = 0; y < h; ++y)
                 {
-                    if (buttonArray[x, y].Equals(button))
+                    if (buttonArray[x, y].Equals(this))
                         return Tuple.Create(x, y);
                 }
             }
 
             return Tuple.Create(-1, -1);
+        }
+
+        public void Move_Destination(ChessButton button, List<ChessButton> validMoves)
+        {
+
         }
     }
 }
