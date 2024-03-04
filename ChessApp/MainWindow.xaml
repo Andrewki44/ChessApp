@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ChessApp"
         xmlns:behaviours="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="ChessApp" Height="900" Width="1440" Margin="0,0,0,-3">
+        Title="ChessApp" Margin="0,0,0,-3" Width="800" Height="400">
 
     <!--<Window.Resources>
         <ControlTemplate x:Key="NoMouseOverButtonTemplate" TargetType="local:ChessButton">
@@ -66,7 +66,7 @@
                     <RowDefinition Height="12.5*" />
                 </Grid.RowDefinitions>
 
-                <local:ChessButton x:Name="A1" Background="SlateGray" Grid.Row="7" Grid.Column="0" />
+                <local:ChessButton x:Name="A1" Background="SlateGray" Grid.Row="7" Grid.Column="0" Click="ChessButton_Click" />
                 <local:ChessButton x:Name="A2" Background="Beige" Grid.Row="7" Grid.Column="1" />
                 <local:ChessButton x:Name="A3" Background="SlateGray" Grid.Row="7" Grid.Column="2" />
                 <local:ChessButton x:Name="A4" Background="Beige" Grid.Row="7" Grid.Column="3" />
@@ -74,7 +74,7 @@
                 <local:ChessButton x:Name="A6" Background="Beige" Grid.Row="7" Grid.Column="5" />
                 <local:ChessButton x:Name="A7" Background="SlateGray" Grid.Row="7" Grid.Column="6" />
                 <local:ChessButton x:Name="A8" Background="Beige" Grid.Row="7" Grid.Column="7" />
-                <local:ChessButton x:Name="B1" Background="Beige" Grid.Row="6" Grid.Column="0" />
+                <local:ChessButton x:Name="B1" Background="Beige" Grid.Row="6" Grid.Column="0" Click="ChessButton_Click" />
                 <local:ChessButton x:Name="B2" Background="SlateGray" Grid.Row="6" Grid.Column="1" />
                 <local:ChessButton x:Name="B3" Background="Beige" Grid.Row="6" Grid.Column="2" />
                 <local:ChessButton x:Name="B4" Background="SlateGray" Grid.Row="6" Grid.Column="3" />

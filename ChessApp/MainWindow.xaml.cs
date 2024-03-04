@@ -22,6 +22,7 @@ namespace ChessApp
     {
         Database.Database sqlite = new Database.Database();
         ChessButton[,] buttonArray = new ChessButton[8, 8];
+        bool isPieceSelected = false;
         
         public MainWindow()
         {
@@ -198,6 +199,45 @@ namespace ChessApp
         private void Chessboard_Loaded(object sender, RoutedEventArgs e)
         {
             NewGame();
+        }
+
+        private void ChessButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChessButton? button = sender as ChessButton;
+            if (button == null)
+                return;
+
+            if (button.piece != null)
+            {
+                if (!isPieceSelected)
+                {
+                    try
+                    {
+                        button.piece.Move_Start(button, buttonArray);
+                        isPieceSelected = true;
+                    }
+                    catch
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        button.piece.Move_End();
+                        isPieceSelected = false;
+                    }
+                    catch
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
